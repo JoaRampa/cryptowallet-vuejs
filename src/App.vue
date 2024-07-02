@@ -33,7 +33,7 @@
           </div>
           <div class="options-menu">
             <div class="option wallet">
-              <a href="/wallet">
+              <router-link to="/wallet">
                 <img
                   src="@/assets/wallet.png"
                   alt="wallet"
@@ -41,10 +41,10 @@
                   height="22"
                 />
                 Billetera
-              </a>
+              </router-link>
             </div>
             <div class="option historial">
-              <a href="/history">
+              <router-link to="/history">
                 <img
                   src="@/assets/history.png"
                   alt="historial"
@@ -52,10 +52,10 @@
                   height="22"
                 />
                 Historial
-              </a>
+              </router-link>
             </div>
             <div class="option logout">
-              <a href="/#" @click="$store.commit('logout')">
+              <router-link to="/" @click="$store.commit('logout')">
                 <img
                   src="@/assets/logout.png"
                   alt="logout"
@@ -63,7 +63,7 @@
                   height="22"
                 />
                 Cerrar Sesión
-              </a>
+              </router-link>
             </div>
           </div>
         </div>

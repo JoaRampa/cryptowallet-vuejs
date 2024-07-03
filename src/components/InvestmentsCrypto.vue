@@ -13,7 +13,7 @@
         <h2><img style="width: 30px" src="@/assets/arrow.png" /></h2>
       </div>
       <div class="infoProfit">
-        <p>Poseciones:</p>
+        <p>Posesiones:</p>
         <p>Gastos por compras</p>
         <p>Retornos por ventas</p>
         <p>Total Profit:</p>

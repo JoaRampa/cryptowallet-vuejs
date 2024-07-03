@@ -149,6 +149,7 @@ export default {
         this.getState();
         this.money = 0;
         this.amount = 0;
+        alert("Realizado");
       } catch (error) {
         console.error("Error al realizar la nueva transacción:", error);
       }

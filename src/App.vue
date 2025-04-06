@@ -80,11 +80,8 @@ body {
   padding: 16px;
   background-color: rgb(22, 29, 41);
   position: fixed;
-  top: 0;
-  left: 0;
   height: 100vh;
   width: 185px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .main-with-sidebar {
@@ -103,31 +100,18 @@ b {
 }
 
 footer {
-  border-top: 1px solid #35314a;
-  margin-top: 100px;
-  margin-left: 185px;
+  position: fixed;
+  bottom: 0;
+  left: 185px;
+  width: calc(100% - 185px);
 }
 
-button, input {
+button, button:enabled, button:disabled, input, select {
   cursor: pointer;
   border: none;
   border-radius: 8px;
-  padding: 8px;
   width: 100%;
-}
-
-button:enabled {
-  cursor: pointer;
-  border: none;
-  border-radius: 8px;
-  padding: 8px;
-  width: 100%;
-}
-
-button:disabled {
-  background-color: #ccc; 
-  border-radius: 8px;
-  cursor: not-allowed;
-  opacity: 0.6;
+  height: 32px;
+  font-size: 12px;
 }
 </style>

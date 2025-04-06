@@ -4,15 +4,7 @@
       <b>Welcome!</b>
       <h3>Inicio de sesión</h3>
       <form @submit.prevent="handleUser" class="id-input" id="form-id">
-        <div class="input-container">
-          <input
-            @keydown.enter="handleUser"
-            v-model="userId"
-            type="text"
-            id="inputId"
-            placeholder="Ingrese UserID"
-          />
-        </div>
+        <input @keydown.enter="handleUser" v-model="userId" type="text" placeholder="Ingrese UserID"/>
         <button type="submit" :disabled="!userId">Siguiente</button>
       </form>
     </div>
@@ -47,25 +39,14 @@ export default {
 <style>
 .container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
+  margin-top: 10rem;
 }
 .logIn {
   text-align: left;
   width: 35%;
 }
 
-h3 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.input-container {
-  margin: 25px 0px 25px;
-}
-
-.input-container input {
-  width: 100%;
+.logIn input {
+  margin-bottom: .5rem;
 }
 </style>

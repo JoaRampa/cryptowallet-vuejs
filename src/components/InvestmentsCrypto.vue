@@ -1,21 +1,17 @@
 <template>
-  <div>
-    <b> Resumen de Inversiones</b>
-  </div>
-  <div class="component">
-    <div class="investments">
-      <div>
-        <p>Posesiones:</p>
-        <p>Gastos por compras</p>
-        <p>Retornos por ventas</p>
-        <p>Total Profit:</p>
-      </div>
-      <div>
-        <p>$ {{ totalCash }}</p>
-        <p>$ {{ calculateBuys() }}</p>
-        <p>$ {{ calculateSale() }}</p>
-        <p>$ {{ calculateTotalProfit() }}</p>
-      </div>
+  <b>Investments</b>
+  <div class="investments">
+    <div>
+      <p>Posesiones:</p>
+      <p>Gastos por compras</p>
+      <p>Retornos por ventas</p>
+      <p>Total Profit:</p>
+    </div>
+    <div>
+      <p>$ {{ totalCash }}</p>
+      <p>$ {{ calculateBuys() }}</p>
+      <p>$ {{ calculateSale() }}</p>
+      <p>$ {{ calculateTotalProfit() }}</p>
     </div>
   </div>
 </template>
@@ -107,15 +103,9 @@ export default {
 </script>
 
 <style scoped>
-.component {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .investments {
   display: flex;
   justify-content: space-between;
-  text-align: left;
+  width: 413px;
 }
 </style>

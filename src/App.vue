@@ -2,7 +2,7 @@
   <div>
     <nav :class="{'nav-top': !isAuthenticated, 'nav-left': isAuthenticated}">
       <div>
-        <img src="@/assets/logo.png" alt="Logo" width="35" />
+        <img src="@/assets/logo.png" alt="Logo" />
         <b>CRYPCREATE</b>
       </div>
       <div v-if="isAuthenticated" class="nav-middle">
@@ -64,8 +64,7 @@ export default {
   display: flex;
   flex-direction: column;
   color: beige;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  text-align: center;
+  font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(10, 13, 23);
@@ -109,6 +108,8 @@ a {
   color: beige !important;
   text-decoration: none !important;
   opacity: 0.6;
+  letter-spacing: .08em;
+  font-size: 16px;
 }
 
 a:hover, .active-link {
@@ -147,6 +148,7 @@ footer {
   bottom: 0;
   left: 185px;
   width: calc(100% - 185px);
+  margin-bottom: 10px;
 }
 
 p {
@@ -159,6 +161,7 @@ button, button:enabled, button:disabled, input, select {
   width: 100%;
   height: 32px;
   font-size: 12px;
+  font-weight: 600;
   background-color: rgb(10, 13, 23);
   border: 1px solid rgba(171, 177, 196, 0.137);
   color: beige;

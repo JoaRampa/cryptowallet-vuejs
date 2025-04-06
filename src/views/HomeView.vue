@@ -2,17 +2,17 @@
   <LogIn v-if="!isAuthenticated" />
   <div v-if="isAuthenticated">
     <div class="view">
-      <div class="cripto"><CryptoRequestPrice /></div>
-        <div class="tabs">
-          <button :class="{ active: currentTab === 'purchase' }" @click="currentTab = 'purchase'">
-            Compra Crypto
-          </button>
-          <button :class="{ active: currentTab === 'sale' }" @click="currentTab = 'sale'">
-            Venta Crypto
-          </button>
-        </div>
-        <div class="tab-content">
-          <component :is="currentTabComponent"/>
+      <CryptoRequestPrice />
+      <div class="tabs">
+        <button :class="{ active: currentTab === 'purchase' }" @click="currentTab = 'purchase'">
+          Compra Crypto
+        </button>
+        <button :class="{ active: currentTab === 'sale' }" @click="currentTab = 'sale'">
+          Venta Crypto
+        </button>
+      </div>
+      <div class="tab-content">
+        <component :is="currentTabComponent"/>
       </div>
     </div>
   </div>
@@ -47,17 +47,16 @@ export default {
 </script>
 
 <style scoped>
-.view {
-  margin-top: 20px;
+.view { 
+  display: grid;
+  grid-template-rows: 1fr 40px 1fr;
 }
-
 .cripto {
   margin-bottom: 4rem;
 }
 
 .tabs {
   display: flex;
-  margin: auto;
   width: 413px;
 }
 

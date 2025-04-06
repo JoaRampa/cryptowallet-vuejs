@@ -83,5 +83,6 @@ export default {
 
 a {
   opacity: 1;
+  text-align: center;
 }
 </style>

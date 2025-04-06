@@ -1,25 +1,23 @@
 <template>
-  <div class="transactions">
-    <div class="purchase">
-      <form id="dataP" @submit.prevent="saveTransactionData">
-        <p v-if="selectedCrypto" style="margin-top: 15px">
-          {{ formatNumber(selectedCryptoPrice) }}
-        </p>
-        <select id="crypto" class="inputs" v-model="selectedCrypto" required>
-          <option v-for="crypto in cryptoList" :key="crypto.code" :value="crypto.code">
-            {{ crypto.name }}
-          </option>
-        </select>
-        <label for="amount">{{ selectedCrypto.toLocaleUpperCase() }} Amount</label>
-        <input type="text" id="amount" class="inputs" v-model="amount"
-          @input="totalMoney(); validateInput();" required/>
-        <label id="money">Total ${{ formatNumber(money) }}</label>
-          <div class="divPurchase">
-            <button class="btn btn-outline-light" type="submit" :disabled="amount === 0" 
-              data-bs-target="#confirmPurchase" data-bs-toggle="modal">
-              Comprar
-            </button>
-          <div class="modal" id="confirmPurchase">
+  <div class="purchase">
+    <form id="dataP" @submit.prevent="saveTransactionData">
+      <p v-if="selectedCrypto" style="margin-top: 15px">
+        {{ formatNumber(selectedCryptoPrice) }}
+      </p>
+      <select id="crypto" class="inputs" v-model="selectedCrypto" required>
+        <option v-for="crypto in cryptoList" :key="crypto.code" :value="crypto.code">
+          {{ crypto.name }}
+        </option>
+      </select>
+      <label for="amount">{{ selectedCrypto.toLocaleUpperCase() }} Amount</label>
+      <input type="text" id="amount" class="inputs" v-model="amount"
+        @input="totalMoney(); validateInput();" required/>
+      <label id="money">Total ${{ formatNumber(money) }}</label>
+      <button class="btnPurchase" type="submit" :disabled="amount === 0" 
+        data-bs-target="#confirmPurchase" data-bs-toggle="modal">
+        Comprar
+      </button>
+      <div class="modal" id="confirmPurchase">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -53,10 +51,8 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </form>
-    </div>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -145,28 +141,22 @@ export default {
 };
 </script>
 
-<style scoped>
-.transactions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
+<style>
 .purchase {
   width: 413px;
 }
 
-.divPurchase button {
-  background-color: #10ac4c;
+.btnPurchase {
+  background-color: #10ac4c !important;
   transition: background-color 0.3s;
   border: none;
 }
 
-.divPurchase button:hover {
+.btnPurchase:hover {
   background-color: rgb(11, 118, 45);
 }
 
-.modal-content {
+.modal {
   color: black;
 }
 </style>

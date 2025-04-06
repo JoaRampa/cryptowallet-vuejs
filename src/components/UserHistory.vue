@@ -1,37 +1,15 @@
 <template>
   <div class="history-page">
-    <div>
-      <b>{{ userId }}</b>
-    </div>
+    <b>{{ userId }}</b>
     <div class="container-xs">
-      <div
-        class="transaction"
-        v-for="(transaction, index) in transactions"
-        :key="transaction.datetime"
-      >
+      <div class="transaction2" v-for="(transaction, index) in transactions" :key="transaction.datetime">
         <div v-if="!transactions.length">No hay transacciones registradas</div>
-        <button
-          class="btn btn-primary"
-          type="button"
-          @click="toggleMenu(index)"
-        >
-          <p>Transacción {{ index + 1 }} {{ transaction.crypto_code }} ▼</p>
+        <button @click="toggleMenu(index)">
+          # {{ index + 1 }} {{ transaction.crypto_code }} ▼
         </button>
-
         <div v-if="activeTransaction === index" class="collapse show">
-          <div
-            class="transaction-box"
-            :class="{
-              purchase: transaction.action === 'purchase',
-              sale: transaction.action !== 'purchase',
-            }"
-          >
-            <p
-              :class="{
-                'text-green': transaction.action === 'purchase',
-                'text-red': transaction.action !== 'purchase',
-              }"
-            >
+          <div class="transaction-box" :class="{ purchase: transaction.action === 'purchase', sale: transaction.action !== 'purchase',}">
+            <p :class="{'text-green': transaction.action === 'purchase', 'text-red': transaction.action !== 'purchase',}">
               Acción: {{ transaction.action }}
             </p>
           </div>
@@ -40,21 +18,13 @@
           <p>Id: {{ transaction._id }}</p>
           <p>Fecha: {{ transaction.datetime }}</p>
           <div class="btnActions">
-            <button
-              @click="saveTransactionId(transaction._id)"
-              class="btn btn-primary"
-              data-bs-toggle="modal"
-              data-bs-target="#confirmEdit"
-            >
-              Editar Nº{{ index + 1 }}
+            <button @click="saveTransactionId(transaction._id)" class="btn btn-primary"
+              data-bs-toggle="modal" data-bs-target="#confirmEdit"> 
+              Editar
             </button>
-            <button
-              @click="saveTransactionId(transaction._id)"
-              class="btn btn-danger"
-              data-bs-toggle="modal"
-              data-bs-target="#confirmDelete"
-            >
-              Eliminar Nº{{ index + 1 }}
+            <button @click="saveTransactionId(transaction._id)" class="btn btn-danger"
+              data-bs-toggle="modal" data-bs-target="#confirmDelete">
+              Eliminar
             </button>
           </div>
         </div>
@@ -64,7 +34,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Eliminar transacción</h5>
-              <button class="btn-close" data-bs-dismiss="modal"></button>
+              <button data-bs-dismiss="modal">x</button>
             </div>
 
             <div class="modal-body">
@@ -75,11 +45,7 @@
               <button class="btn btn-secondary" data-bs-dismiss="modal">
                 Cancelar
               </button>
-              <button
-                @click="deleteTransactionLocal(deleteTransactionId)"
-                data-bs-dismiss="modal"
-                class="btn btn-danger"
-              >
+              <button @click="deleteTransactionLocal(deleteTransactionId)" data-bs-dismiss="modal" class="btn btn-danger">
                 Eliminar
               </button>
             </div>
@@ -92,29 +58,14 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Editar transacción</h5>
-              <button class="btn-close" data-bs-dismiss="modal"></button>
+              <button data-bs-dismiss="modal">x</button>
             </div>
 
             <div class="modal-body">
               <h6>Ingrese el nuevo monto de cripto:</h6>
-              <input
-                class="input"
-                type="number"
-                id="crypto_amount"
-                v-model="crypto_amount"
-                min="0"
-                step="0.01"
-              />
-
+              <input class="input" type="number" id="crypto_amount" v-model="crypto_amount" min="0" step="0.01"/>
               <h6>Ingrese el nuevo monto de ARS:</h6>
-              <input
-                class="input"
-                type="number"
-                id="money"
-                v-model="money"
-                min="0"
-                step="0.01"
-              />
+              <input class="input" type="number" id="money" v-model="money" min="0" step="0.01"/>
             </div>
 
             <div class="modal-footer">
@@ -236,7 +187,7 @@ export default {
   padding: 5px;
 }
 
-.transaction {
+.transaction2 {
   border-radius: 5px;
   flex: 0 0 20%;
   margin: 3px;
@@ -244,16 +195,6 @@ export default {
 
 .btnActions {
   display: flex;
-  justify-content: center;
-  padding: 3px;
-}
-
-.btnActions button {
-  margin: 3px;
-}
-
-.modal {
-  color: black;
 }
 
 .text-green {

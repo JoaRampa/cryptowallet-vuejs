@@ -1,30 +1,25 @@
 <template>
-  <div class="contain">
-    <div class="cryptos">
-      <div class="header">
-        <p>Coins</p>
-        <p>Amount</p>
-        <p>Cash in</p>
-      </div>
-      <div v-if="Object.keys(getWallet).length === 0">
-        <p>No hay elementos en la billetera.</p>
-      </div>
-      <div
-        v-else
-        v-for="(amount, cryptoCode) in getWallet"
-        :key="cryptoCode"
-      >
-        <div class="coin">
-          <img :src="require(`@/assets/${cryptoCode}.png`)" :alt="cryptoCode" />
-          {{ cryptoCode.toUpperCase() }}
-        </div>
-        <div class="amount">{{ amount }}</div>
-        <div>${{ calculateCash(amount, cryptoCode) }}</div>
-      </div>
-      <div class="header p" style="align-items: right">
-        <p>Total: ${{ totalCash }}</p>
-      </div>
+  <div class="header">
+    <p>Coins</p>
+    <p>Amount</p>
+    <p>Cash in</p>
+  </div>
+  <div>
+    <div v-if="Object.keys(getWallet).length === 0">
+      <p>No hay elementos en la billetera.</p>
     </div>
+    <div v-else
+      v-for="(amount, cryptoCode) in getWallet" :key="cryptoCode" class="row-wallet">
+      <div class="coin">
+        <img :src="require(`@/assets/${cryptoCode}.png`)" :alt="cryptoCode" />
+        {{ cryptoCode.toUpperCase() }}
+      </div>
+        <p>{{ amount }}</p>
+        <p>${{ calculateCash(amount, cryptoCode).toFixed(0) }}</p>
+    </div>
+  </div>
+  <div class="header-p">
+    <p>Total: ${{ totalCash }}</p>
   </div>
 </template>
 
@@ -75,7 +70,6 @@ export default {
       }
     },
     mounted() {
-      // Iniciar la actualización cada 10 segundos
       setInterval(async () => {
         await this.fetchData();
       }, 10000); // 10000 milisegundos = 10 segundos
@@ -84,45 +78,38 @@ export default {
 };
 </script>
 
-<style scoped>
-.contain {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.cryptos {
-  width: 50%;
-  padding: 15px;
-}
-
+<style>
 .header {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  padding: 15px;
-  text-align: left;
-}
-
-.header > * {
-  flex: 1;
-}
-
-.header p {
   background-color: #35314a;
-  padding: 10px;
-  height: 40px;
-  display: flex;
-  align-items: center;
+  padding: 4px 10px;
+  font-weight: bold;
 }
 
-img {
-  padding: 5px;
-  width: 35px;
+.row-wallet {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  padding: 10px;
 }
 
 .coin {
   display: flex;
   align-items: center;
+  margin-right: 20px;
+}
+
+img {
+  padding: 5px 0;
+  width: 25px;
+  margin-right: 8px;
+}
+
+.header-p {
+  background-color: #35314a;
+  width: 100%;
+  padding: 4px 10px;
 }
 </style>

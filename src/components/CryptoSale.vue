@@ -1,26 +1,25 @@
 <template>
-  <div class="transactions">
-    <div class="purchase">
-      <form @submit.prevent="saveTransactionData">
-       <p v-if="selectedCrypto">
-          {{ formatNumber(selectedCryptoPrice) }}
-        </p>
-        <select id="crypto" v-model="selectedCrypto" required>
-          <option v-for="crypto in cryptoList" :key="crypto.code" :value="crypto.code">
-            {{ crypto.name }}
-          </option>
-        </select>
-        <label for="amount">Disponible: {{ getWallet[selectedCrypto] }}</label>
-        <input type="text" id="amount" class="inputs" v-model="amount"
-          @input="totalMoney(); validateInput();" required />
-        <label id="money">Total ${{ formatNumber(money) }}</label>
-        <div class="sale">
-          <button class="btn btn-outline-light" type="submit" :disabled="amount === 0 || saleAmount < amount"
-            data-bs-target="#confirmSale" data-bs-toggle="modal">
-            Vender
-          </button>
-          </div>
-          <div class="modal" id="confirmSale">
+  <div class="purchase">
+    <form @submit.prevent="saveTransactionData">
+      <p v-if="selectedCrypto">
+        {{ formatNumber(selectedCryptoPrice) }}
+      </p>
+      <select id="crypto" v-model="selectedCrypto" required>
+        <option v-for="crypto in cryptoList" :key="crypto.code" :value="crypto.code">
+          {{ crypto.name }}
+        </option>
+      </select>
+      <label for="amount">Disponible: {{ getWallet[selectedCrypto] }}</label>
+      <input type="text" id="amount" class="inputs" v-model="amount"
+        @input="totalMoney(); validateInput();" required />
+      <label id="money">Total ${{ formatNumber(money) }}</label>
+      <div class="sale">
+        <button class="btn btn-outline-light" type="submit" :disabled="amount === 0 || saleAmount < amount"
+          data-bs-target="#confirmSale" data-bs-toggle="modal">
+          Vender
+        </button>
+        </div>
+        <div class="modal" id="confirmSale">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -54,9 +53,8 @@
                 </div>
               </div>
             </div>
-        </div>
-      </form>
-    </div>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -161,16 +159,6 @@ export default {
 </script>
 
 <style scoped>
-.transactions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.purchase {
-  width: 413px;
-}
-
 .sale button {
   background-color: #af1b1b;
   transition: background-color 0.3s;
@@ -179,9 +167,5 @@ export default {
 
 .sale button:hover {
   background-color: rgb(103, 15, 15);
-}
-
-.modal-content {
-  color: black;
 }
 </style>

@@ -104,7 +104,6 @@ b {
 
 footer {
   border-top: 1px solid #35314a;
-  width: 100%;
   margin-top: 100px;
   margin-left: 185px;
 }

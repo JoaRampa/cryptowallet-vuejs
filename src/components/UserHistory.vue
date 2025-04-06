@@ -237,11 +237,8 @@ export default {
 }
 
 .transaction {
-  background-color: rgb(14, 15, 46);
-  border: 1px solid #35314a;
   border-radius: 5px;
   flex: 0 0 20%;
-  box-sizing: border-box;
   margin: 3px;
 }
 
@@ -253,7 +250,6 @@ export default {
 
 .btnActions button {
   margin: 3px;
-  border: 1px solid #35314a;
 }
 
 .modal {

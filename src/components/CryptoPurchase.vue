@@ -201,24 +201,11 @@ export default {
 
 .divPurchase button {
   background-color: #10ac4c;
-  color: beige;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .divPurchase button:hover {
   background-color: rgb(11, 118, 45);
-}
-
-.inputs {
-  background-color: rgb(14, 15, 46);
-  border: 1px solid #35314a;
-  color: beige;
-  border-radius: 5px;
-  width: 70px;
 }
 
 .modal-content {

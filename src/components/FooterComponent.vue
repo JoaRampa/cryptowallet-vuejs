@@ -2,7 +2,7 @@
   <div class="footer">
     <div class="container-fluid">
       <div class="row">
-        <div class="col title"><b style="font-size: 25px">CRYPCREATE</b></div>
+        <div class="col title"><b>CRYPCREATE</b></div>
         <div class="col">
           <img style="height: 50px" src="@/assets/logo.png" alt="logo" />
         </div>

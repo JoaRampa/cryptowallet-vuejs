@@ -1,24 +1,22 @@
 <template>
   <div>
-    <img src="@/assets/arrow.png" alt="image" style="width: 100px" />
-    <b style="font-size: 30px"> Resumen de Inversiones</b>
-    <img src="@/assets/arrow.png" alt="image" style="width: 100px" />
+    <b> Resumen de Inversiones</b>
   </div>
   <div class="component">
     <div class="investments">
-      <div class="infoProfit">
+      <div>
         <h2><img style="width: 30px" src="@/assets/profit.png" /></h2>
         <h2><img style="width: 30px" src="@/assets/buys.png" /></h2>
         <h2><img style="width: 30px" src="@/assets/sale.png" /></h2>
         <h2><img style="width: 30px" src="@/assets/arrow.png" /></h2>
       </div>
-      <div class="infoProfit">
+      <div>
         <p>Posesiones:</p>
         <p>Gastos por compras</p>
         <p>Retornos por ventas</p>
         <p>Total Profit:</p>
       </div>
-      <div class="infoProfit">
+      <div>
         <p>$ {{ totalCash }}</p>
         <p>$ {{ calculateBuys() }}</p>
         <p>$ {{ calculateSale() }}</p>
@@ -125,15 +123,5 @@ export default {
   display: flex;
   justify-content: space-between;
   text-align: left;
-  border: 1px solid #35314a;
-  border-radius: 15px;
-}
-
-.infoProfit {
-  padding: 30px;
-}
-
-.infoProfit p {
-  margin: 15px 0px 20px;
 }
 </style>

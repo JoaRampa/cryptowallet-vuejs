@@ -4,22 +4,16 @@
   </div>
   <div v-if="isAuthenticated">
     <div class="view">
-      <img src="@/assets/bchain.png" alt="image" style="width: 100px" />
-      <b style="font-size: 40px">Trading</b>
-    </div>
-    <div class="view">
       <div class="cripto"><CryptoRequestPrice /></div>
       <div class="operation">
         <div class="tabs">
           <button
-            style="border-top-left-radius: 15px"
             :class="{ active: currentTab === 'purchase' }"
             @click="currentTab = 'purchase'"
           >
             Compra Crypto
           </button>
           <button
-            style="border-top-right-radius: 15px"
             :class="{ active: currentTab === 'sale' }"
             @click="currentTab = 'sale'"
           >
@@ -27,7 +21,7 @@
           </button>
         </div>
         <div class="tab-content">
-          <component :is="currentTabComponent" style="margin: 0 15px" />
+          <component :is="currentTabComponent"/>
         </div>
       </div>
     </div>
@@ -65,29 +59,22 @@ export default {
 <style scoped>
 .view {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 5px;
 }
 .cripto {
   width: 35%;
-  margin-right: 30px;
 }
 .operation {
   width: 45%;
-  border: 1px solid #35314a;
   border-radius: 15px;
-  margin-left: 35px;
 }
 .tabs {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
 }
 
 .tabs button {
-  background-color: rgb(14, 15, 46);
-  cursor: pointer;
   transition: background-color 0.8s;
 }
 

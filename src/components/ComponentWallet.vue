@@ -1,11 +1,7 @@
 <template>
   <div class="contain">
     <div class="cryptos">
-      <div class="contain">
-        <img src="@/assets/logo.png" style="width: 50px" />
-        <b style="font-size: 40px">{{ userId }}</b>
-      </div>
-      <div class="header p">
+      <div class="header">
         <p><img src="@/assets/b.png" />Coins</p>
         <p>Amount</p>
         <p>Cash in</p>
@@ -17,7 +13,6 @@
         v-else
         v-for="(amount, cryptoCode) in getWallet"
         :key="cryptoCode"
-        class="header"
       >
         <div class="coin">
           <img :src="require(`@/assets/${cryptoCode}.png`)" :alt="cryptoCode" />
@@ -98,8 +93,6 @@ export default {
 
 .cryptos {
   width: 50%;
-  border: 1px solid #35314a;
-  border-radius: 15px;
   padding: 15px;
 }
 

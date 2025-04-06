@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="cryptos">
-      <div class="header p">
+      <div class="header">
         <p><img src="@/assets/b.png" />Coins</p>
       </div>
       <div v-for="crypto in cryptoList" :key="crypto.code" class="header">
@@ -69,23 +69,15 @@ export default {
 </script>
 
 <style scoped>
-.cryptos {
-  border: 1px solid #35314a;
-  border-radius: 15px;
-  padding: 15px;
-}
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  padding: 5px;
   margin-bottom: 10px;
 }
 .header p {
   background-color: #35314a;
-  padding: 10px;
   width: 100%;
   height: 40px;
   display: flex;

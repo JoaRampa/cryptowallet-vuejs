@@ -216,24 +216,11 @@ export default {
 
 .sale button {
   background-color: #af1b1b;
-  color: beige;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .sale button:hover {
   background-color: rgb(103, 15, 15);
-}
-
-.inputs {
-  background-color: rgb(14, 15, 46);
-  border: 1px solid #35314a;
-  color: beige;
-  border-radius: 5px;
-  width: 70px;
 }
 
 .modal-content {

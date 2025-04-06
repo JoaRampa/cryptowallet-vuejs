@@ -36,7 +36,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .container {
   display: flex;
   margin-top: 10rem;
@@ -48,5 +48,15 @@ export default {
 
 .logIn input {
   margin-bottom: .5rem;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+button {
+  background-color: #11cfc8;
+  color: black;
+  letter-spacing: .05em;
 }
 </style>

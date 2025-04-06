@@ -5,12 +5,6 @@
   <div class="component">
     <div class="investments">
       <div>
-        <h2><img style="width: 30px" src="@/assets/profit.png" /></h2>
-        <h2><img style="width: 30px" src="@/assets/buys.png" /></h2>
-        <h2><img style="width: 30px" src="@/assets/sale.png" /></h2>
-        <h2><img style="width: 30px" src="@/assets/arrow.png" /></h2>
-      </div>
-      <div>
         <p>Posesiones:</p>
         <p>Gastos por compras</p>
         <p>Retornos por ventas</p>

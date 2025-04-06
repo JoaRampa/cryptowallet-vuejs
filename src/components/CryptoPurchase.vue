@@ -188,20 +188,18 @@ export default {
 
 .purchase {
   width: 100%;
-  padding: 15px;
 }
 
 .crypto {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 35px;
-  height: 30px;
 }
 
 .divPurchase button {
   background-color: #10ac4c;
   transition: background-color 0.3s;
+  border: none;
 }
 
 .divPurchase button:hover {

@@ -1,19 +1,32 @@
 <template>
   <div>
     <nav :class="{'nav-top': !isAuthenticated, 'nav-left': isAuthenticated}">
-      <img src="@/assets/logo.png" alt="Logo" width="35" />
-      <b>CRYPCREATE</b>
-      <div v-if="isAuthenticated">
-        <div>
-          <router-link :to="{ name: 'Home' }">Tradear </router-link>
-          <router-link :to="{ name: 'investmentsCrypto' }">Analisis Inversiones </router-link>
-          <router-link to="/history">Historial </router-link>
-          <router-link to="/wallet">Billetera </router-link>
-        </div>
-        <div>
-          <button>{{ userId }}</button>
-          <router-link to="/" @click="$store.commit('logout')">Cerrar Sesión</router-link>
-        </div>
+      <div>
+        <img src="@/assets/logo.png" alt="Logo" width="35" />
+        <b>CRYPCREATE</b>
+      </div>
+      <div v-if="isAuthenticated" class="nav-middle">
+        <hr>
+        <router-link :to="{ name: 'Home' }" active-class="active-link">
+          <i class="fas fa-chart-line"></i>Trade
+        </router-link>
+        <router-link :to="{ name: 'investmentsCrypto' }" active-class="active-link">
+          <i class="fas fa-piggy-bank"></i>Investments
+        </router-link>
+        <router-link to="/history" active-class="active-link">
+          <i class="fas fa-history"></i>History
+        </router-link>
+        <router-link to="/wallet" active-class="active-link">
+          <i class="fas fa-wallet"></i>Wallet
+        </router-link>
+        <hr>
+      </div>
+      <div v-if="isAuthenticated" class="nav-bottom">
+        <hr>
+        <p>{{ userId }}</p>
+        <router-link to="/" @click="$store.commit('logout')">
+          <i class="fas fa-sign-out-alt"></i>Logout
+        </router-link>
       </div>
     </nav>
     <main :class="{'main-with-sidebar': isAuthenticated}">
@@ -84,6 +97,36 @@ body {
   width: 185px;
 }
 
+.nav-middle {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 8px;
+  gap: .25rem;
+}
+
+a {
+  color: beige !important;
+  text-decoration: none !important;
+  opacity: 0.6;
+}
+
+a:hover, .active-link {
+  opacity: 1;
+}
+
+.nav-bottom {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: .25rem
+}
+
+.nav-middle i, .nav-bottom i {
+  margin-right: 12px;
+}
+
 .main-with-sidebar {
   margin-left: 185px; 
   padding: 16px;
@@ -106,12 +149,24 @@ footer {
   width: calc(100% - 185px);
 }
 
+p {
+  margin: 0 !important;
+}
+
 button, button:enabled, button:disabled, input, select {
   cursor: pointer;
-  border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   width: 100%;
   height: 32px;
   font-size: 12px;
+  background-color: rgb(10, 13, 23);
+  border: 1px solid rgba(171, 177, 196, 0.137);
+  color: beige;
+  outline: none;
+}
+
+input:focus, select:focus {
+  border-color: #11cfc8;
+  box-shadow: 0 0 5px rgba(73, 224, 189, 0.5);
 }
 </style>

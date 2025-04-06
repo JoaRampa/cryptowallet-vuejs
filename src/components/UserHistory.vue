@@ -1,8 +1,7 @@
 <template>
   <div class="history-page">
     <div>
-      <img src="@/assets/bchain.png" alt="image" style="width: 100px" />
-      <b style="font-size: 35px">{{ userId }}</b>
+      <b>{{ userId }}</b>
     </div>
     <div class="container-xs">
       <div
@@ -10,6 +9,7 @@
         v-for="(transaction, index) in transactions"
         :key="transaction.datetime"
       >
+        <div v-if="!transactions.length">No hay transacciones registradas</div>
         <button
           class="btn btn-primary"
           type="button"

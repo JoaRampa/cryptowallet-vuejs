@@ -1,7 +1,5 @@
 <template>
-  <div class="home">
-    <LogIn v-if="!isAuthenticated" />
-  </div>
+  <LogIn v-if="!isAuthenticated" />
   <div v-if="isAuthenticated">
     <div class="view">
       <div class="cripto"><CryptoRequestPrice /></div>
@@ -58,20 +56,15 @@ export default {
 
 <style scoped>
 .view {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin-top: 20px;
 }
+
 .cripto {
-  width: 35%;
+  margin-bottom: 4rem;
 }
-.operation {
-  width: 45%;
-  border-radius: 15px;
-}
+
 .tabs {
   display: flex;
-  justify-content: center;
 }
 
 .tabs button {

@@ -2,7 +2,7 @@
   <div>
     <div class="cryptos">
       <div class="header">
-        <p><img src="@/assets/b.png" />Coins</p>
+        <b>Coins</b>
       </div>
       <div v-for="crypto in cryptoList" :key="crypto.code" class="header">
         <div class="coin">
@@ -76,13 +76,10 @@ export default {
   text-align: center;
   margin-bottom: 10px;
 }
-.header p {
-  background-color: #35314a;
+.header b {
   width: 100%;
-  height: 40px;
-  display: flex;
-  align-items: center;
 }
+
 img {
   padding: 5px;
   width: 35px;

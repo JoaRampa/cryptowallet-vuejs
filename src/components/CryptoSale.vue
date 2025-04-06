@@ -203,20 +203,18 @@ export default {
 
 .purchase {
   width: 100%;
-  padding: 15px;
 }
 
 .crypto {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 35px;
-  height: 30px;
 }
 
 .sale button {
   background-color: #af1b1b;
   transition: background-color 0.3s;
+  border: none;
 }
 
 .sale button:hover {

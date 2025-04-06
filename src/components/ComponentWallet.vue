@@ -2,7 +2,7 @@
   <div class="contain">
     <div class="cryptos">
       <div class="header">
-        <p><img src="@/assets/b.png" />Coins</p>
+        <p>Coins</p>
         <p>Amount</p>
         <p>Cash in</p>
       </div>
@@ -114,10 +114,6 @@ export default {
   height: 40px;
   display: flex;
   align-items: center;
-}
-
-.header p image {
-  width: 35px;
 }
 
 img {

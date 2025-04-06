@@ -1,9 +1,5 @@
 <template>
-  <div class="title">
-    <b style="font-size: 30px; margin-bottom: 5px">
-      <img src="@/assets/mywallet.png" alt="Logo" width="100" />Billetera
-    </b>
-  </div>
+  <b>Wallet</b>
   <ComponentWallet />
 </template>
 <script>
@@ -15,11 +11,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-</style>

@@ -80,4 +80,8 @@ export default {
   display: flex;
   flex-direction: column;
 }
+
+a {
+  opacity: 1;
+}
 </style>

@@ -3,24 +3,16 @@
   <div v-if="isAuthenticated">
     <div class="view">
       <div class="cripto"><CryptoRequestPrice /></div>
-      <div class="operation">
         <div class="tabs">
-          <button
-            :class="{ active: currentTab === 'purchase' }"
-            @click="currentTab = 'purchase'"
-          >
+          <button :class="{ active: currentTab === 'purchase' }" @click="currentTab = 'purchase'">
             Compra Crypto
           </button>
-          <button
-            :class="{ active: currentTab === 'sale' }"
-            @click="currentTab = 'sale'"
-          >
+          <button :class="{ active: currentTab === 'sale' }" @click="currentTab = 'sale'">
             Venta Crypto
           </button>
         </div>
         <div class="tab-content">
           <component :is="currentTabComponent"/>
-        </div>
       </div>
     </div>
   </div>
@@ -65,6 +57,8 @@ export default {
 
 .tabs {
   display: flex;
+  margin: auto;
+  width: 413px;
 }
 
 .tabs button {

@@ -2,57 +2,24 @@
   <div class="transactions">
     <div class="purchase">
       <form @submit.prevent="saveTransactionData">
-        <div class="crypto select">
-          <select id="crypto" class="inputs" v-model="selectedCrypto" required>
-            <option
-              v-for="crypto in cryptoList"
-              :key="crypto.code"
-              :value="crypto.code"
-            >
-              {{ crypto.name }}
-            </option>
-          </select>
-          <p v-if="selectedCrypto" style="margin-top: 15px">
-            {{ formatNumber(selectedCryptoPrice) }}
-          </p>
-        </div>
-        <div class="crypto amount">
-          <label for="amount"
-            >Disponible: {{ getWallet[selectedCrypto] }}</label
-          >
-          <input
-            type="text"
-            id="amount"
-            class="inputs"
-            v-model="amount"
-            @input="
-              totalMoney();
-              validateInput();
-            "
-            required
-          />
-        </div>
-        <div class="crypto money">
-          <label id="money">Total ${{ formatNumber(money) }}</label>
-        </div>
-        <div class="btn-save">
-          <div class="sale">
-            <button
-              class="btn btn-outline-light"
-              type="submit"
-              :disabled="amount === 0 || saleAmount < amount"
-              data-bs-target="#confirmSale"
-              data-bs-toggle="modal"
-            >
-              Vender
-              <img
-                :src="require(`@/assets/${selectedCrypto}.png`)"
-                :alt="selectedCrypto"
-                width="25"
-              />
-            </button>
+       <p v-if="selectedCrypto">
+          {{ formatNumber(selectedCryptoPrice) }}
+        </p>
+        <select id="crypto" v-model="selectedCrypto" required>
+          <option v-for="crypto in cryptoList" :key="crypto.code" :value="crypto.code">
+            {{ crypto.name }}
+          </option>
+        </select>
+        <label for="amount">Disponible: {{ getWallet[selectedCrypto] }}</label>
+        <input type="text" id="amount" class="inputs" v-model="amount"
+          @input="totalMoney(); validateInput();" required />
+        <label id="money">Total ${{ formatNumber(money) }}</label>
+        <div class="sale">
+          <button class="btn btn-outline-light" type="submit" :disabled="amount === 0 || saleAmount < amount"
+            data-bs-target="#confirmSale" data-bs-toggle="modal">
+            Vender
+          </button>
           </div>
-
           <div class="modal" id="confirmSale">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -87,7 +54,6 @@
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </form>
     </div>
@@ -202,13 +168,7 @@ export default {
 }
 
 .purchase {
-  width: 100%;
-}
-
-.crypto {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  width: 413px;
 }
 
 .sale button {

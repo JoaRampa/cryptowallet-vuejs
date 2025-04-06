@@ -2,57 +2,23 @@
   <div class="transactions">
     <div class="purchase">
       <form id="dataP" @submit.prevent="saveTransactionData">
-        <div class="crypto select">
-          <select id="crypto" class="inputs" v-model="selectedCrypto" required>
-            <option
-              v-for="crypto in cryptoList"
-              :key="crypto.code"
-              :value="crypto.code"
-            >
-              {{ crypto.name }}
-            </option>
-          </select>
-          <p v-if="selectedCrypto" style="margin-top: 15px">
-            {{ formatNumber(selectedCryptoPrice) }}
-          </p>
-        </div>
-        <div class="crypto amount">
-          <label for="amount"
-            >Cantidad de -{{ selectedCrypto.toLocaleUpperCase() }}</label
-          >
-          <input
-            type="text"
-            id="amount"
-            class="inputs"
-            v-model="amount"
-            @input="
-              totalMoney();
-              validateInput();
-            "
-            required
-          />
-        </div>
-        <div class="crypto money">
-          <label id="money">Total ${{ formatNumber(money) }}</label>
-        </div>
-        <div class="btn-save">
+        <p v-if="selectedCrypto" style="margin-top: 15px">
+          {{ formatNumber(selectedCryptoPrice) }}
+        </p>
+        <select id="crypto" class="inputs" v-model="selectedCrypto" required>
+          <option v-for="crypto in cryptoList" :key="crypto.code" :value="crypto.code">
+            {{ crypto.name }}
+          </option>
+        </select>
+        <label for="amount">{{ selectedCrypto.toLocaleUpperCase() }} Amount</label>
+        <input type="text" id="amount" class="inputs" v-model="amount"
+          @input="totalMoney(); validateInput();" required/>
+        <label id="money">Total ${{ formatNumber(money) }}</label>
           <div class="divPurchase">
-            <button
-              class="btn btn-outline-light"
-              type="submit"
-              :disabled="amount === 0"
-              data-bs-target="#confirmPurchase"
-              data-bs-toggle="modal"
-            >
+            <button class="btn btn-outline-light" type="submit" :disabled="amount === 0" 
+              data-bs-target="#confirmPurchase" data-bs-toggle="modal">
               Comprar
-              <img
-                :src="require(`@/assets/${selectedCrypto}.png`)"
-                :alt="selectedCrypto"
-                width="25"
-              />
             </button>
-          </div>
-
           <div class="modal" id="confirmPurchase">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -187,13 +153,7 @@ export default {
 }
 
 .purchase {
-  width: 100%;
-}
-
-.crypto {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  width: 413px;
 }
 
 .divPurchase button {

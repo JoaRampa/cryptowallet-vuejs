@@ -1,82 +1,30 @@
 <template>
   <div>
-    <nav v-if="isAuthenticated">
-      <div class="brand">
-        <img src="@/assets/logo.png" alt="Logo" width="35" />
-        <b>CRYPCREATE</b>
-        <router-link :to="{ name: 'Home' }">Tradear </router-link>
-        <router-link
-          :to="{ name: 'investmentsCrypto' }"
-          style="margin-left: 18px"
-        >
-          Analisis Inversiones</router-link
-        >
-      </div>
-      <div
-        class="user-menu"
-        @mouseover="showMenu = true"
-        @mouseleave="showMenu = false"
-      >
-        <div class="brand">
-          <img
-            src="@/assets/user.png"
-            alt="User"
-            width="35"
-            height="33"
-            :class="{ hovered: showMenu }"
-          />
-          <b :class="{ hovered: showMenu }">{{ userId }}</b>
+    <nav :class="{'nav-top': !isAuthenticated, 'nav-left': isAuthenticated}">
+      <img src="@/assets/logo.png" alt="Logo" width="35" />
+      <b>CRYPCREATE</b>
+      <div v-if="isAuthenticated">
+        <div>
+          <router-link :to="{ name: 'Home' }">Tradear </router-link>
+          <router-link :to="{ name: 'investmentsCrypto' }">Analisis Inversiones </router-link>
+          <router-link to="/history">Historial </router-link>
+          <router-link to="/wallet">Billetera </router-link>
         </div>
-        <div v-show="showMenu" class="menu">
-          <div class="user-info">
-            <img src="@/assets/logo.png" alt="Logo" width="35" />
-          </div>
-          <div class="options-menu">
-            <div class="option wallet">
-              <router-link to="/wallet">
-                <img
-                  src="@/assets/wallet.png"
-                  alt="wallet"
-                  width="25"
-                  height="22"
-                />
-                Billetera
-              </router-link>
-            </div>
-            <div class="option historial">
-              <router-link to="/history">
-                <img
-                  src="@/assets/history.png"
-                  alt="historial"
-                  width="25"
-                  height="22"
-                />
-                Historial
-              </router-link>
-            </div>
-            <div class="option logout">
-              <router-link to="/" @click="$store.commit('logout')">
-                <img
-                  src="@/assets/logout.png"
-                  alt="logout"
-                  width="25"
-                  height="22"
-                />
-                Cerrar Sesión
-              </router-link>
-            </div>
-          </div>
+        <div>
+          <button>{{ userId }}</button>
+          <router-link to="/" @click="$store.commit('logout')">Cerrar Sesión</router-link>
         </div>
       </div>
     </nav>
-    <main>
+    <main :class="{'main-with-sidebar': isAuthenticated}">
       <router-view />
     </main>
+    <footer v-if="isAuthenticated">
+      <FooterComponent />
+    </footer>
   </div>
-  <footer v-if="isAuthenticated">
-    <FooterComponent />
-  </footer>
 </template>
+
 
 <script>
 import { mapGetters } from "vuex";
@@ -107,8 +55,9 @@ export default {
   text-align: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(14, 15, 46);
+  background-color: rgb(10, 13, 23);
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 html,
@@ -117,69 +66,30 @@ body {
   margin: 0;
 }
 
-nav {
+.nav-top {
   display: flex;
-  justify-content: space-between;
   padding: 8px;
-  border-bottom: 1px solid #35314a;
+  align-items: center;
+  background-color: rgb(22, 29, 41);
   margin-bottom: 6px;
 }
 
-nav a {
-  font-weight: bold;
-  font-size: 15px;
-  color: BEIGE;
-}
-
-.brand {
+.nav-left {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  padding: 16px;
+  background-color: rgb(22, 29, 41);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 185px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.brand b {
-  margin-right: 18px;
-}
-
-.user-menu {
-  margin-right: 18px;
-}
-
-.menu {
-  position: absolute;
-  right: 10px;
-  background-color: rgb(14, 15, 46);
-  border: 1px solid #35314a;
-  border-radius: 5px;
-  z-index: 1000;
-  font-size: 12px;
-  width: 250px;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 20px 0px 1px;
-}
-
-.options-menu {
-  margin-top: 10px;
-}
-
-.option a {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: BEIGE;
-  padding: 10px;
-}
-
-.option a:hover {
-  background-color: #181945;
-}
-
-.option img {
-  margin-right: 10px;
+.main-with-sidebar {
+  margin-left: 185px; 
+  padding: 16px;
 }
 
 b {
@@ -188,18 +98,37 @@ b {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 700;
+  letter-spacing: 0.1em;
 }
 
-.hovered {
-  filter: brightness(150%);
-}
-main {
-  flex: 1;
-}
 footer {
   border-top: 1px solid #35314a;
   width: 100%;
   margin-top: 100px;
+  margin-left: 185px;
+}
+
+button, input {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  width: 100%;
+}
+
+button:enabled {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  width: 100%;
+}
+
+button:disabled {
+  background-color: #ccc; 
+  border-radius: 8px;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 </style>

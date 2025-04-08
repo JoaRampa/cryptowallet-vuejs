@@ -34,7 +34,6 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Eliminar transacción</h5>
-              <button data-bs-dismiss="modal">x</button>
             </div>
 
             <div class="modal-body">

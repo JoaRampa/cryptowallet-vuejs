@@ -10,56 +10,30 @@
       <input type="text" id="amount" class="inputs" v-model="amount"
         @input="amount = validateInput(amount); totalMoney();" required />
       <label id="money">Total ${{ formatNumber(money) }}</label>
-      <div class="sale">
-        <button class="btn btn-outline-light" type="submit" :disabled="amount === 0 || saleAmount < amount"
-          data-bs-target="#confirmSale" data-bs-toggle="modal">
-          Vender
-        </button>
-        </div>
-        <div class="modal" id="confirmSale">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Confirmar Venta</h5>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div class="modal-body">
-                  <p>¿Seguro que quiere vender las criptomonedas?</p>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Cerrar
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-primary"
-                    data-bs-dismiss="modal"
-                    @click="newTransaction(transactionData)"
-                  >
-                    Confirmar
-                  </button>
-                </div>
-              </div>
-            </div>
-      </div>
+      <button class="saleBtn" type="submit" :disabled="amount === 0 || saleAmount < amount"
+        data-bs-target="#confirmSaleModal" data-bs-toggle="modal">
+        Vender
+      </button>
     </form>
+    <ConfirmModal
+      modal-id="confirmSaleModal"
+      modal-title="Confirmar Venta"
+      message="¿Seguro que quiere vender las criptomonedas?"
+      confirm-button-label="Confirmar"
+      cancel-button-label="Cerrar"
+      :transaction-data="transactionData"
+      @confirmed="newTransaction"
+    />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
 import { validateInput, formatNumber } from '../utils/index.js';
+import ConfirmModal from './Modal';
 
 export default {
+  components: {ConfirmModal},
   data() {
     return {
       selectedCrypto: "btc",
@@ -67,7 +41,7 @@ export default {
       amount: 0,
       userWallet: {},
       saleAmount: 0,
-      transactionData: null,
+      transactionData: {},
     };
   },
   computed: {
@@ -140,13 +114,13 @@ export default {
 </script>
 
 <style scoped>
-.sale button {
+.saleBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.saleBtn {
   background-color: #af1b1b;
   transition: background-color 0.3s;
   border: none;
-}
-
-.sale button:hover {
-  background-color: rgb(103, 15, 15);
 }
 </style>

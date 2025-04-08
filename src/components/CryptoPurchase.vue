@@ -10,57 +10,33 @@
       <input type="text" id="amount" class="inputs" v-model="amount"
         @input="amount = validateInput(amount);totalMoney();" required/>
       <label id="money">Total ${{ formatNumber(money) }}</label>
-      <button class="btnPurchase" type="submit" :disabled="amount === 0" 
-        data-bs-target="#confirmPurchase" data-bs-toggle="modal">
+      <button class="btnPurchase" type="submit" :disabled="amount <= 0" 
+        data-bs-target="#confirmPurchaseModal" data-bs-toggle="modal">
         Comprar
       </button>
-      <div class="modal" id="confirmPurchase">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Confirmar Compra</h5>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div class="modal-body">
-                  <p>¿Quiere confirmar la compra?</p>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Cerrar
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-primary"
-                    data-bs-dismiss="modal"
-                    @click="newTransaction(transactionData)"
-                  >
-                    Confirmar
-                  </button>
-                </div>
-              </div>
-            </div>
-      </div>
     </form>
+    <ConfirmModal
+      modal-id="confirmPurchaseModal"
+      modal-title="Confirmar Compra"
+      message="¿Seguro que quiere comprar las criptomonedas?"
+      confirm-button-label="Confirmar"
+      cancel-button-label="Cerrar"
+      :transaction-data="transactionData"
+      @confirmed="newTransaction"
+    />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
 import { validateInput, formatNumber } from '../utils/index.js';
+import ConfirmModal from './Modal'
 
 export default {
+  components: {ConfirmModal},
   data() {
     return {
-      transactionData: null,
+      transactionData: {},
       selectedCrypto: "btc",
       saveData: false,
       money: 0,
@@ -132,10 +108,10 @@ export default {
   border: none;
 }
 
-.btnPurchase:hover {
-  background-color: rgb(11, 118, 45);
+.btnPurchase:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
-
 .modal {
   color: black;
 }

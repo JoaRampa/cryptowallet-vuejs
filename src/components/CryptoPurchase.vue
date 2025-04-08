@@ -112,7 +112,4 @@ export default {
   cursor: not-allowed;
   opacity: 0.5;
 }
-.modal {
-  color: black;
-}
 </style>

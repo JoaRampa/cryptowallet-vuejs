@@ -15,7 +15,7 @@
         {{ cryptoCode.toUpperCase() }}
       </div>
         <p>{{ amount }}</p>
-        <p>${{ calculateCash(amount, cryptoCode).toFixed(0) }}</p>
+        <p>${{ formatNumber(calculateCash(amount, cryptoCode)) }}</p>
     </div>
   </div>
   <div class="header-p">
@@ -25,6 +25,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import { formatNumber } from "@/utils";
 
 export default {
   computed: {
@@ -41,6 +42,8 @@ export default {
   },
   methods: {
     ...mapActions("transactions", ["getState"]),
+    formatNumber,
+
     calculateCash(amount, cryptoCode) {
       const code = cryptoCode.toUpperCase();
       const cryptoGetter = `get${code}Price`;
@@ -53,15 +56,6 @@ export default {
         return 0;
       }
     },
-    formatNumber(number) {
-      if (typeof number === "undefined") {
-        return "";
-      }
-      const numStr = number.toString();
-      const parts = numStr.split(".");
-      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-      return parts.join(",");
-    },
     async fetchData() {
       try {
         await this.getState(this.userId);
@@ -70,9 +64,7 @@ export default {
       }
     },
     mounted() {
-      setInterval(async () => {
-        await this.fetchData();
-      }, 10000); // 10000 milisegundos = 10 segundos
+      this.fetchData();
     },
   },
 };

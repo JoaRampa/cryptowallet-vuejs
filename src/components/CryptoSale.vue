@@ -1,9 +1,6 @@
 <template>
   <div class="purchase">
     <form @submit.prevent="saveTransactionData">
-      <p v-if="selectedCrypto">
-        {{ formatNumber(selectedCryptoPrice) }}
-      </p>
       <select id="crypto" v-model="selectedCrypto" required>
         <option v-for="crypto in cryptoList" :key="crypto.code" :value="crypto.code">
           {{ crypto.name }}
@@ -11,7 +8,7 @@
       </select>
       <label for="amount">Disponible: {{ getWallet[selectedCrypto] }}</label>
       <input type="text" id="amount" class="inputs" v-model="amount"
-        @input="totalMoney(); validateInput();" required />
+        @input="amount = validateInput(amount); totalMoney();" required />
       <label id="money">Total ${{ formatNumber(money) }}</label>
       <div class="sale">
         <button class="btn btn-outline-light" type="submit" :disabled="amount === 0 || saleAmount < amount"
@@ -60,6 +57,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import { validateInput, formatNumber } from '../utils/index.js';
 
 export default {
   data() {
@@ -91,6 +89,9 @@ export default {
   },
   methods: {
     ...mapActions("transactions", ["createTransaction", "getState"]),
+    validateInput,
+    formatNumber,
+
     saveTransactionData() {
       if (this.amount > 0) {
         if (this.saleAmount >= this.amount) {
@@ -119,9 +120,7 @@ export default {
       }
     },
     getSaleAmount(selectedCrypto) {
-      if (!this.getWallet) {
-        this.getState();
-      }
+      if (!this.getWallet) this.getState();
 
       const wallet = this.getWallet || {};
       const cryptoCode = selectedCrypto.toLowerCase();
@@ -131,28 +130,10 @@ export default {
       const crypto = this.cryptoList.find(
         (crypto) => crypto.code === this.selectedCrypto
       );
-      if (this.amount < 0) {
-        this.amount = 0;
-      }
+      if (this.amount < 0) this.amount = 0;
+      
       this.getSaleAmount(this.selectedCrypto);
       this.money = parseFloat((this.amount * crypto.price.totalBid).toFixed(2));
-    },
-    formatNumber(number) {
-      if (typeof number === "undefined") {
-        return "";
-      }
-      const numStr = number.toString();
-      const parts = numStr.split(".");
-      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-      return parts.join(",");
-    },
-    validateInput() {
-      const regex = /^\d+(\.\d{0,6})?$/;
-      if (!regex.test(this.amount)) {
-        this.decimalPart = false;
-      } else {
-        this.decimalPart = true;
-      }
     },
   },
 };

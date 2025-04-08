@@ -8,16 +8,17 @@
       <p>Total Profit:</p>
     </div>
     <div>
-      <p>$ {{ totalCash }}</p>
-      <p>$ {{ calculateBuys() }}</p>
-      <p>$ {{ calculateSale() }}</p>
-      <p>$ {{ calculateTotalProfit() }}</p>
+      <p>$ {{ formatNumber(totalCash) }}</p>
+      <p>$ {{ formatNumber(calculateBuys()) }}</p>
+      <p>$ {{ formatNumber(calculateSale()) }}</p>
+      <p>$ {{ formatNumber(calculateTotalProfit()) }}</p>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import {formatNumber} from "../utils/index.js"
 
 export default {
   data() {
@@ -41,6 +42,8 @@ export default {
   methods: {
     ...mapActions("transactions", ["getState"]),
     ...mapActions("transactions", ["getHistory"]),
+    formatNumber,
+
     calculateBuys() {
       let buys = 0;
       for (let index = 0; index < this.transactions.length; index++) {
@@ -81,7 +84,7 @@ export default {
       let totalCashValue = this.totalCash;
 
       let totalProfit = totalBuys + totalSales + totalCashValue;
-      return totalProfit.toFixed(2);
+      return totalProfit;
     },
     async fetchData() {
       try {

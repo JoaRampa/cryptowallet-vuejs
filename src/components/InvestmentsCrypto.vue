@@ -1,11 +1,10 @@
 <template>
-  <b>Investments</b>
   <div class="investments">
-    <div>
-      <p>Posesiones:</p>
-      <p>Gastos por compras</p>
-      <p>Retornos por ventas</p>
-      <p>Total Profit:</p>
+    <div style="margin:0 50px;">
+      <p>Possessions:</p>
+      <p>Buys</p>
+      <p>Sales</p>
+      <p>Profit:</p>
     </div>
     <div>
       <p>$ {{ formatNumber(totalCash) }}</p>
@@ -71,7 +70,7 @@ export default {
       const cryptoGetter = `get${code}Price`;
       const cryptoPrice = this[cryptoGetter];
       if (cryptoPrice) {
-        const cash = parseFloat(amount * cryptoPrice.totalAsk);
+        const cash = parseFloat(amount * cryptoPrice.totalBid);
         return cash;
       } else {
         console.error(`Getter ${cryptoGetter} no encontrado`);
@@ -108,7 +107,11 @@ export default {
 <style scoped>
 .investments {
   display: flex;
-  justify-content: space-between;
-  width: 413px;
+  width: 50%;
+  margin: 4rem auto;
+}
+
+.investments p {
+  font-size: 25px;
 }
 </style>

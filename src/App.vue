@@ -1,58 +1,19 @@
 <template>
-  <div>
-    <nav :class="{'nav-top': !isAuthenticated, 'nav-left': isAuthenticated}">
-      <div>
-        <img src="@/assets/logo.png" alt="Logo" />
-        <b>CRYPCREATE</b>
-      </div>
-      <div v-if="isAuthenticated" class="nav-middle">
-        <hr>
-        <router-link :to="{ name: 'Home' }" active-class="active-link">
-          <i class="fas fa-chart-line"></i>Trade
-        </router-link>
-        <router-link :to="{ name: 'investmentsCrypto' }" active-class="active-link">
-          <i class="fas fa-piggy-bank"></i>Investments
-        </router-link>
-        <router-link to="/history" active-class="active-link">
-          <i class="fas fa-history"></i>History
-        </router-link>
-        <router-link to="/wallet" active-class="active-link">
-          <i class="fas fa-wallet"></i>Wallet
-        </router-link>
-        <hr>
-      </div>
-      <div v-if="isAuthenticated" class="nav-bottom">
-        <hr>
-        <p>{{ userId }}</p>
-        <router-link to="/" @click="$store.commit('logout')">
-          <i class="fas fa-sign-out-alt"></i>Logout
-        </router-link>
-      </div>
-    </nav>
+    <NavBar />
     <main :class="{'main-with-sidebar': isAuthenticated}">
       <router-view />
     </main>
-    <footer v-if="isAuthenticated">
-      <FooterComponent />
-    </footer>
-  </div>
+    <FooterComponent v-if="isAuthenticated"/>
 </template>
-
 
 <script>
 import { mapGetters } from "vuex";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import FooterComponent from "@/components/FooterComponent.vue";
+import NavBar from "./components/NavBar.vue";
 
 export default {
-  components: {
-    FooterComponent,
-  },
-  data() {
-    return {
-      showMenu: false,
-    };
-  },
+  components: {FooterComponent, NavBar},
   computed: {
     ...mapGetters(["userId", "isAuthenticated"]),
   },
@@ -78,32 +39,6 @@ body {
   margin: 0;
 }
 
-.nav-top {
-  display: flex;
-  padding: 8px;
-  align-items: center;
-  background-color: rgb(22, 29, 41);
-  margin-bottom: 6px;
-}
-
-.nav-left {
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  background-color: rgb(22, 29, 41);
-  position: fixed;
-  height: 100vh;
-  width: 185px;
-}
-
-.nav-middle {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  padding: 8px;
-  gap: .25rem;
-}
-
 a {
   color: beige !important;
   text-decoration: none !important;
@@ -114,18 +49,6 @@ a {
 
 a:hover, .active-link {
   opacity: 1;
-}
-
-.nav-bottom {
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  gap: .25rem
-}
-
-.nav-middle i, .nav-bottom i {
-  margin-right: 12px;
 }
 
 .main-with-sidebar {
@@ -141,14 +64,6 @@ b {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 0.1em;
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 185px;
-  width: calc(100% - 185px);
-  margin-bottom: 10px;
 }
 
 p {

@@ -24,13 +24,17 @@
 </template>
 
 <style scoped>
+.row {
+  position: fixed;
+  bottom: 0;
+  left: 185px;
+  width: calc(100% - 185px);
+  margin-bottom: 10px;
+}
 svg {
   width: 20px; 
   height:20px; 
   fill: currentColor;
-}
-.footer {
-  padding: 10px 0px;
 }
 
 .container-fluid {

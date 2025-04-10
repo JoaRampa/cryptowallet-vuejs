@@ -12,7 +12,7 @@
       <label id="money">Total ${{ formatNumber(money) }}</label>
       <button class="btnPurchase" type="submit" :disabled="amount <= 0" 
         data-bs-target="#confirmPurchaseModal" data-bs-toggle="modal">
-        Comprar
+        Buy
       </button>
     </form>
     <ConfirmModal
@@ -99,7 +99,12 @@ export default {
 
 <style>
 .purchase {
-  width: 413px;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.purchase label {
+  margin: 0.5rem 0 0 .2rem;
 }
 
 .btnPurchase {

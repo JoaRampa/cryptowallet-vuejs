@@ -1,9 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import WalletView from "@/views/WalletView.vue";
-import HistoryView from "@/views/ViewHistory.vue";
 import store from "@/store";
-import InvestmentsCrypto from "@/components/InvestmentsCrypto.vue";
+import WalletV from "@/views/WalletV.vue";
+import UserHistory from "@/components/UserHistory.vue";
 
 const routes = [
   {
@@ -15,19 +14,13 @@ const routes = [
   {
     path: "/wallet",
     name: "WalletView",
-    component: WalletView,
+    component: WalletV,
     meta: { requiereAuth: true },
   },
   {
     path: "/history",
     name: "HistoryView",
-    component: HistoryView,
-    meta: { requiereAuth: true },
-  },
-  {
-    path: "/investments",
-    name: "investmentsCrypto",
-    component: InvestmentsCrypto,
+    component: UserHistory,
     meta: { requiereAuth: true },
   },
 ];
@@ -39,7 +32,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && !store.state.isAuthenticated) {
-    alert("Ingrese un userId");
+    alert("Ingrese un user");
     next("/");
   } else if (to.meta.requiresGuest && store.state.isAuthenticated) {
     next("/#");

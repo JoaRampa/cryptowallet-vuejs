@@ -16,14 +16,14 @@
       <div class="modal-dialog">
         <div class="modal-content" v-if="selectedTransaction">
           <div class="modal-header">
-            <h5 class="modal-title">Detalles de la transacción</h5>
+            <h5 class="modal-title">Details</h5>
           </div>
           <div class="modal-body">
-            <p><strong>Acción:</strong> {{ selectedTransaction.action }}</p>
-            <p><strong>Cantidad:</strong> {{ selectedTransaction.crypto_amount }}</p>
+            <p><strong>Action:</strong> {{ selectedTransaction.action }}</p>
+            <p><strong>Quantity:</strong> {{ selectedTransaction.crypto_amount }}</p>
             <p><strong>Total:</strong> ${{ selectedTransaction.money }}</p>
             <p><strong>ID:</strong> {{ selectedTransaction._id }}</p>
-            <p><strong>Fecha:</strong> {{ selectedTransaction.datetime }}</p>
+            <p><strong>Date:</strong> {{ selectedTransaction.datetime }}</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" @click="closeModal">Cerrar</button>

@@ -6,13 +6,13 @@
           {{ crypto.name }}
         </option>
       </select>
-      <label for="amount">Disponible: {{ getWallet[selectedCrypto] }}</label>
+      <label for="amount">Available: {{ getWallet[selectedCrypto] }}</label>
       <input type="text" id="amount" class="inputs" v-model="amount"
         @input="amount = validateInput(amount); totalMoney();" required />
       <label id="money">Total ${{ formatNumber(money) }}</label>
       <button class="saleBtn" type="submit" :disabled="amount === 0 || saleAmount < amount"
         data-bs-target="#confirmSaleModal" data-bs-toggle="modal">
-        Vender
+        Sell
       </button>
     </form>
     <ConfirmModal

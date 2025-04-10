@@ -1,11 +1,11 @@
 <template>
   <div class="container">
+    <b style="font-size: 2rem;">Welcome!</b>
     <div class="logIn">
-      <b>Welcome!</b>
-      <h3>Inicio de sesión</h3>
+      <p>User</p>
       <form @submit.prevent="handleUser" class="id-input" id="form-id">
-        <input @keydown.enter="handleUser" v-model="userId" type="text" placeholder="Ingrese UserID"/>
-        <button type="submit" :disabled="!userId">Siguiente</button>
+        <input @keydown.enter="handleUser" v-model="userId" type="text" placeholder="('RampaJoa' has already data to see)"/>
+        <button type="submit" :disabled="!userId">Continue</button>
       </form>
     </div>
   </div>
@@ -38,16 +38,20 @@ export default {
 
 <style scoped>
 .container {
-  display: flex;
-  margin-top: 10rem;
+  z-index: 999999;
 }
 .logIn {
   text-align: left;
-  width: 35%;
+  width: 80%;
+  margin-top: .75rem;
 }
 
 .logIn input {
-  margin-bottom: .5rem;
+  margin-bottom: .75rem;
+}
+
+.logIn p {
+  font-weight: bold;
 }
 
 button:disabled {
